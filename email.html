@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facebook — New Login Detected</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #e9ebee;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      padding: 32px 16px;
+      color: #1c1e21;
+    }
+
+    .email-wrap {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Pre-header */
+    .pre-header {
+      font-size: 11px;
+      color: #888;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    /* Main card */
+    .email-card {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #dddfe2;
+    }
+
+    /* Header */
+    .email-header {
+      background: #1877f2;
+      padding: 20px 32px;
+      text-align: center;
+    }
+    .email-header-logo {
+      color: #fff;
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    /* Alert strip */
+    .alert-strip {
+      background: #fff3cd;
+      border-bottom: 1px solid #ffc107;
+      padding: 10px 32px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #856404;
+      font-weight: 600;
+    }
+    .alert-icon {
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      background: #ffc107;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    /* Body */
+    .email-body {
+      padding: 32px 32px 24px;
+    }
+
+    .greeting {
+      font-size: 15px;
+      color: #1c1e21;
+      margin-bottom: 16px;
+    }
+
+    .headline {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1c1e21;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .subtext {
+      font-size: 14px;
+      color: #606770;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    /* Login detail card */
+    .login-detail {
+      background: #f0f2f5;
+      border-radius: 8px;
+      border: 1px solid #dddfe2;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+    }
+    .login-detail-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #888;
+      margin-bottom: 14px;
+    }
+    .detail-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .detail-row:last-child { margin-bottom: 0; }
+    .detail-icon {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      background: #dddfe2;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+    .detail-label {
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 2px;
+    }
+    .detail-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1c1e21;
+    }
+
+    /* Divider */
+    .divider {
+      border: none;
+      border-top: 1px solid #dddfe2;
+      margin: 4px 0 24px;
+    }
+
+    /* Question */
+    .question-text {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1c1e21;
+      margin-bottom: 6px;
+    }
+    .question-sub {
+      font-size: 13px;
+      color: #606770;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* Buttons */
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .btn-primary {
+      background: #1877f2;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-secondary {
+      background: #fff;
+      color: #1877f2;
+      border: 1px solid #1877f2;
+      border-radius: 6px;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    /* Security tip */
+    .security-tip {
+      background: #f0f7ff;
+      border-left: 4px solid #1877f2;
+      border-radius: 0 6px 6px 0;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #444;
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+    .security-tip strong { color: #1877f2; font-weight: 700; }
+
+    /* Footer */
+    .email-footer {
+      background: #f0f2f5;
+      border-top: 1px solid #dddfe2;
+      padding: 20px 32px;
+      text-align: center;
+    }
+    .footer-logo {
+      color: #1877f2;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    .footer-links {
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 8px;
+    }
+    .footer-links a {
+      color: #888;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+    .footer-links a:hover { text-decoration: underline; }
+    .footer-address {
+      font-size: 11px;
+      color: #aaa;
+      line-height: 1.6;
+    }
+    .footer-unsubscribe {
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 6px;
+    }
+    .footer-unsubscribe a { color: #aaa; text-decoration: underline; }
+
+    /* Outside email meta */
+    .email-meta {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 11px;
+      color: #999;
+    }
+    .email-meta a { color: #999; text-decoration: underline; }
+
+    @media (max-width: 480px) {
+      .email-body { padding: 24px 20px 20px; }
+      .email-header { padding: 16px 20px; }
+      .alert-strip { padding: 10px 20px; }
+      .login-detail { padding: 16px; }
+      .email-footer { padding: 16px 20px; }
+      .btn-group { flex-direction: column; }
+      .btn-primary, .btn-secondary { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="email-wrap">
+
+  <div class="pre-header">
+    This email was sent to you&#64;example.com &nbsp;·&nbsp; <a href="#" style="color:#888;">View in browser</a>
+  </div>
+
+  <div class="email-card">
+
+    <!-- Header -->
+    <div class="email-header">
+      <div class="email-header-logo">facebook</div>
+    </div>
+
+    <!-- Alert strip -->
+    <div class="alert-strip">
+      <div class="alert-icon">!</div>
+      We detected a new login to your Facebook account.
+    </div>
+
+    <!-- Body -->
+    <div class="email-body">
+
+      <p class="greeting">Hi <strong>Juan dela Cruz</strong>,</p>
+
+      <h1 class="headline">New login detected on your account</h1>
+      <p class="subtext">
+        We noticed a login to your Facebook account from a new device or location.
+        If this was you, no action is needed. If you don't recognize this activity,
+        please secure your account immediately.
+      </p>
+
+      <!-- Login details -->
+      <div class="login-detail">
+        <div class="login-detail-title">Login Details</div>
+
+        <div class="detail-row">
+          <div class="detail-icon">&#128197;</div>
+          <div>
+            <div class="detail-label">Date & Time</div>
+            <div class="detail-value">Thursday, April 23, 2026 at 10:42 AM</div>
+          </div>
+        </div>
+
+        <div class="detail-row">
+          <div class="detail-icon">&#127758;</div>
+          <div>
+            <div class="detail-label">Location</div>
+            <div class="detail-value">Davao City, Philippines</div>
+          </div>
+        </div>
+
+        <div class="detail-row">
+          <div class="detail-icon">&#128241;</div>
+          <div>
+            <div class="detail-label">Device</div>
+            <div class="detail-value">Chrome on Windows 11</div>
+          </div>
+        </div>
+
+        <div class="detail-row">
+          <div class="detail-icon">&#127760;</div>
+          <div>
+            <div class="detail-label">IP Address</div>
+            <div class="detail-value">112.198.xxx.xxx</div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <p class="question-text">Was this you?</p>
+      <p class="question-sub">
+        If you recognize this login, you can safely ignore this email. If you did <strong>not</strong> log in recently,
+        your account may be at risk — click below to secure it right away.
+      </p>
+
+      <div class="btn-group">
+        <a href="#" class="btn-primary">Yes, this was me</a>
+        <a href="#" class="btn-secondary">No, secure my account</a>
+      </div>
+
+      <div class="security-tip">
+        <strong>Security tip:</strong> Facebook will never ask for your password via email.
+        Always go directly to <strong>facebook.com</strong> to manage your account security settings.
+        Enable two-factor authentication to add an extra layer of protection.
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="email-footer">
+      <div class="footer-logo">facebook</div>
+      <div class="footer-links">
+        <a href="#">Help Center</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+      <div class="footer-address">
+        Meta Platforms, Inc., Attention: Community Support<br>
+        1 Meta Way, Menlo Park, CA 94025
+      </div>
+      <div class="footer-unsubscribe">
+        You're receiving this security email because you have a Facebook account.<br>
+        <a href="#">Manage notification settings</a> &nbsp;·&nbsp; <a href="#">Unsubscribe</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="email-meta">
+    &copy; 2026 Meta Platforms, Inc. &nbsp;·&nbsp;
+    <a href="#">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="#">Terms</a>
+  </div>
+
+</div>
+
+</body>
+</html>
