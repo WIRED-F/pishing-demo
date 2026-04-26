@@ -1,1 +1,3 @@
 # pishing-demo
+
+This content is provided strictly for educational purposes only. It is intended to support learning, understanding, and the responsible exploration of concepts, and should not be used for any illegal, harmful, or unethical activities. The information shared is meant to promote knowledge, awareness, and critical thinking, particularly in areas related to technology and security. Any actions taken based on this material are the sole responsibility of the individual, and it is strongly encouraged that all applicable laws, regulations, and ethical guidelines are followed at all times. By engaging with this content, the reader acknowledges the importance of using this knowledge in a safe, responsible, and lawful manner.
